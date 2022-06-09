@@ -16,6 +16,6 @@ def create_overlay(img_dir, alpha=0.3, skip_frames=1):
 
 if __name__ == '__main__':
     img_dir = 'images' # Input image dir, created by Blender
-    alpha = 0.1 # Transparency (between 0-1; 0 less and 1 is more opacity)
+    alpha = 0.5 # Transparency (between 0-1; 0 less and 1 is more opacity)
     skip_frames = 3 # Overlay every skip_frames
     create_overlay(img_dir, alpha=alpha, skip_frames=skip_frames)
