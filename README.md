@@ -30,7 +30,23 @@ python pybullet_replay.py --joint_angles_file traj.npy
 ```
 blender -b -P render.py 
 ```
+### Example Renderings
+<p float="left">
+ <img src="https://https://github.com/priyasundaresan/blender_bullet_traj_vis/blob/master/images/000.png" height="200">
+ <img src="https://https://github.com/priyasundaresan/blender_bullet_traj_vis/blob/master/images/010.png" height="200">
+ <img src="https://https://github.com/priyasundaresan/blender_bullet_traj_vis/blob/master/images/020.png" height="200">
+</p>
+<p float="left">
+ <img src="https://https://github.com/priyasundaresan/blender_bullet_traj_vis/blob/master/images_waypoints/000.png" height="200">
+ <img src="https://https://github.com/priyasundaresan/blender_bullet_traj_vis/blob/master/images_waypoints/010.png" height="200">
+ <img src="https://https://github.com/priyasundaresan/blender_bullet_traj_vis/blob/master/images_waypoints/020.png" height="200">
+</p>
 * Composite multiple frames to create a trajectory visualization (saves to `result.png`)
 ```
 python overlay_traj.py
 ```
+### Example Overlays
+<p float="left">
+ <img src="https://https://github.com/priyasundaresan/blender_bullet_traj_vis/blob/master/result.png" height="200">
+ <img src="https://https://github.com/priyasundaresan/blender_bullet_traj_vis/blob/master/result_waypoints.png" height="200">
+</p>
