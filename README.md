@@ -49,6 +49,7 @@ python overlay_traj.py
  <img src="https://github.com/priyasundaresan/blender_bullet_traj_vis/blob/main/result_waypoints.png" height="250">
 </p>
 * You can use tools like https://ezgif.com/maker to upload images and create gifs:
+### Example Gifs
 <p float="left">
  <img src="https://github.com/priyasundaresan/blender_bullet_traj_vis/blob/main/gifs/traj.gif" height="250">
  <img src="https://github.com/priyasundaresan/blender_bullet_traj_vis/blob/main/gifs/traj_poses.gif" height="250">
