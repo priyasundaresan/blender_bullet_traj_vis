@@ -12,7 +12,6 @@ pip install networkx==2.5
 ```
 
 ### Install Blender 2.93
-* Visit: https://download.blender.org/release/Blender2.93/ 
 * Download Blender 2.93.4 for your OS from https://www.blender.org/download/lts/2-93/
 * Alias `blender` in your `~/.bashrc` (mine looks like the following:)
 ```
