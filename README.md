@@ -32,9 +32,9 @@ blender -b -P render.py
 ```
 ### Example Renderings
 <p float="left">
- <img src="https://github.com/priyasundaresan/blender_bullet_traj_vis/tree/main/images_traj/000.png" height="200">
- <img src="https://github.com/priyasundaresan/blender_bullet_traj_vis/tree/main/images_traj/010.png" height="200">
- <img src="https://github.com/priyasundaresan/blender_bullet_traj_vis/tree/main/images_traj/020.png" height="200">
+ <img src="https://github.com/priyasundaresan/blender_bullet_traj_vis/blob/main/images_traj/000.png" height="200">
+ <img src="https://github.com/priyasundaresan/blender_bullet_traj_vis/blob/main/images_traj/010.png" height="200">
+ <img src="https://github.com/priyasundaresan/blender_bullet_traj_vis/blob/main/images_traj/020.png" height="200">
 </p>
 <p float="left">
  <img src="https://github.com/priyasundaresan/blender_bullet_traj_vis/tree/main/images_waypoints/000.png" height="200">
