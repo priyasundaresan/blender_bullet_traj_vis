@@ -3,20 +3,19 @@ import numpy as np
 import os
 from PIL import Image
 
-def overlay(img_dir):
+def create_overlay(img_dir, alpha=0.3, skip_frames=1):
     result = None
-    alpha = 0.5
-    for i, fn in enumerate(sorted(os.listdir(img_dir))[::2]):
-    #for i, fn in enumerate(sorted(os.listdir(img_dir))):
+    for i, fn in enumerate(sorted(os.listdir(img_dir))[::skip_frames]):
         img   = Image.open(os.path.join(img_dir, fn))
         if result is None:
             result = img
         else:
             result.paste(img, mask=img)
-            #result = Image.blend(result, img, alpha=.3)
-            result = Image.blend(result, img, alpha=0.05)
+            result = Image.blend(result, img, alpha=alpha)
     result.save('result.png')
 
 if __name__ == '__main__':
-    img_dir = 'images'
-    overlay(img_dir)
+    img_dir = 'images' # Input image dir, created by Blender
+    alpha = 0.1 # Transparency (between 0-1; 0 less and 1 is more opacity)
+    skip_frames = 3 # Overlay every skip_frames
+    create_overlay(img_dir, alpha=alpha, skip_frames=skip_frames)

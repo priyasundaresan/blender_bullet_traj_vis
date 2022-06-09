@@ -9,7 +9,17 @@ from utils.camera_utils import MultiCamera
 from utils.pybullet_recorder import PyBulletRecorder
 from spatialmath import SE3
 import matplotlib.pyplot as plt
-import roboticstoolbox as rtb
+#import roboticstoolbox as rtb
+
+#def create_test_traj():
+#    robot = rtb.models.DH.Panda()
+#    robot.qz = np.load('initial_joint_pos.npy')
+#    T = SE3(0.8, 0.2, 0.1) * SE3.OA([0, 1, 0], [0, 0, -1]) # random pose
+#    sol = robot.ikine_LM(T) 
+#    q_pickup = sol.q
+#    qt = rtb.jtraj(robot.qz, q_pickup, 25)
+#    np.save('traj.npy', qt.q)
+#    return qt.q
 
 def get_args(parent=None):
     parser = argparse.ArgumentParser(description='Main', add_help=False)
@@ -17,21 +27,12 @@ def get_args(parent=None):
     args = parser.parse_args()
     return args
 
-def create_test_traj():
-    robot = rtb.models.DH.Panda()
-    robot.qz = np.load('initial_joint_pos.npy')
-    T = SE3(0.8, 0.2, 0.1) * SE3.OA([0, 1, 0], [0, 0, -1]) # random pose
-    sol = robot.ikine_LM(T) 
-    q_pickup = sol.q
-    qt = rtb.jtraj(robot.qz, q_pickup, 25)
-    return qt.q
 
 def main(args):
-    #traj_data = np.load(os.path.expanduser(args.joint_angles_file))
-    traj_data = create_test_traj()
+    #traj_data = create_test_traj()
+    traj_data = np.load(os.path.expanduser(args.joint_angles_file))
     print('Loaded traj_data', traj_data.shape)
     assert(traj_data.shape[-1] == 7)  # 7DoF joint poses
-
     #
     # Init Pybullet sim.
     #
