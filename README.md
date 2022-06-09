@@ -36,13 +36,7 @@ blender -b -P render.py
  <img src="https://github.com/priyasundaresan/blender_bullet_traj_vis/blob/main/images_traj/015.png" height="200">
  <img src="https://github.com/priyasundaresan/blender_bullet_traj_vis/blob/main/images_traj/020.png" height="200">
 </p>
-<p float="left">
- <img src="https://github.com/priyasundaresan/blender_bullet_traj_vis/blob/main/images_waypoints/000.png" height="100">
- <img src="https://github.com/priyasundaresan/blender_bullet_traj_vis/blob/main/images_waypoints/005.png" height="100">
- <img src="https://github.com/priyasundaresan/blender_bullet_traj_vis/blob/main/images_waypoints/010.png" height="100">
- <img src="https://github.com/priyasundaresan/blender_bullet_traj_vis/blob/main/images_waypoints/015.png" height="100">
- <img src="https://github.com/priyasundaresan/blender_bullet_traj_vis/blob/main/images_waypoints/020.png" height="100">
-</p>
+
 * Composite multiple frames to create a trajectory visualization (saves to `result.png`)
 ```
 python overlay_traj.py
