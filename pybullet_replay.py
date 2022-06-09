@@ -7,8 +7,7 @@ import pybullet_utils.bullet_client as bclient
 from utils.bullet_manipulator import BulletManipulator
 from utils.camera_utils import MultiCamera
 from utils.pybullet_recorder import PyBulletRecorder
-from spatialmath import SE3
-import matplotlib.pyplot as plt
+#from spatialmath import SE3
 #import roboticstoolbox as rtb
 
 #def create_test_traj():
