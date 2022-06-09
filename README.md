@@ -8,7 +8,7 @@
 ### Install Python dependencies
 ```
 conda env create -f environment.yml
-pip install networkx==2.5
+pip install networkx==2.5 # random fix to make urdfpy work
 ```
 
 ### Install Blender 2.93
@@ -22,7 +22,7 @@ alias blender="/Applications/Blender.app/Contents/MacOS/Blender"
 
 <a name="usage"></a>
 ## Usage
-* Playback the input trajectory `traj.npy` and save Franka URDF poses
+* Provide an input trajectory `traj.npy` which is `N x 7` and play it back using a Panda URDF in PyBullet
 ```
 python pybullet_replay.py --joint_angles_file traj.npy
 ```
@@ -31,6 +31,7 @@ python pybullet_replay.py --joint_angles_file traj.npy
 # Note, see the settings at line 249 for different modes of visualizing
 blender -b -P render.py 
 ```
+* See the script to configure different camera poses/rendering settings and adding objects to the scene
 
 ### Example Renderings
 <p float="left">
