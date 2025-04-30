@@ -64,28 +64,51 @@ def add_light():
     bpy.context.object.data.energy = 5
 
 def set_render_settings(render_size, engine='CYCLES', generate_masks=True):
-    # Configure renderer
     scene = bpy.context.scene
 
-    bpy.data.worlds["World"].node_tree.nodes["Background"].inputs[1].default_value = 0.3
-    bpy.data.worlds["World"].node_tree.nodes["Background"].inputs[0].default_value = (1, 1, 1, 1)
+    # World background (controls brightness of transparent edges)
+    world = bpy.data.worlds["World"]
+    if not world.use_nodes:
+        world.use_nodes = True
+    bg = world.node_tree.nodes.get("Background")
+    if bg:
+        bg.inputs[1].default_value = 0.3  # Strength
+        bg.inputs[0].default_value = (1, 1, 1, 1)  # White
 
-    scene.view_layers['View Layer'].cycles.use_denoising = True
-    scene.render.film_transparent = True
-    scene.render.image_settings.color_mode = 'RGBA'
-    scene.render.resolution_percentage = 100
+    # Rendering settings
     scene.render.engine = engine
-    render_width, render_height = render_size
-    scene.render.resolution_x = render_width
-    scene.render.resolution_y = render_height
+    scene.render.resolution_x, scene.render.resolution_y = render_size
+    scene.render.resolution_percentage = 100
+    scene.render.film_transparent = True  # Enable transparent background
     scene.use_nodes = True
-    scene.render.image_settings.file_format='PNG' # Transparent background
-    #scene.render.image_settings.file_format='JPEG' # Non-transparent background
+
+    # Image output settings
+    scene.render.image_settings.file_format = 'PNG'
+    scene.render.image_settings.color_mode = 'RGBA'
+    scene.render.image_settings.color_depth = '8'
+    scene.render.image_settings.compression = 15
+    #scene.render.alpha_mode = 'TRANSPARENT'
+
+    # Cycles quality settings
+    scene.cycles.device = 'GPU'
+    scene.cycles.samples = 256  # Good quality, reasonable speed
+    bpy.context.scene.cycles.tile_x = 16 # Use 256 if on GPU 
+    bpy.context.scene.cycles.tile_y = 16 # Use 256 if on GPU
+    scene.cycles.use_adaptive_sampling = True
+    scene.cycles.use_denoising = True
+    scene.cycles.denoiser = 'OPENIMAGEDENOISE'
+
+    scene.cycles.preview_samples = 64  # In viewport
+
+    # View transform
     scene.view_settings.exposure = 1.6
-    scene.cycles.samples = 150 # Quality of render; in general higher is slower!!!
     scene.view_settings.view_transform = 'Raw'
-    scene.render.tile_x = 16 # Use 256 if on GPU
-    scene.render.tile_y = 16 # Use 256 if on GPU
+
+    # Use Metal backend on Mac (if supported)
+    prefs = bpy.context.preferences.addons['cycles'].preferences
+    prefs.compute_device_type = 'METAL'
+    prefs.get_devices()
+
 
 def render(frame, output_dir):
     scene = bpy.context.scene
@@ -133,9 +156,8 @@ def keyframe_traj(context, files, directory, mode='urdf'):
                     ".")[-1].lower()
                 # Handle different mesh formats
                 if 'obj' in extension:
-                    bpy.ops.import_scene.obj(
-                        filepath=pybullet_obj['mesh_path'],
-                        axis_forward='Y', axis_up='Z')
+                    bpy.ops.wm.obj_import(
+                        filepath=pybullet_obj['mesh_path'])
                 elif 'dae' in extension:
                     bpy.ops.wm.collada_import(
                         filepath=pybullet_obj['mesh_path'])
